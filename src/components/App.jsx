@@ -21,6 +21,24 @@ state = {
     ],
     filter: '',
 };
+    //метод монтирования компонента/компонент «рожден» (вызывается после рендеринга компонента)
+    //JSON.parse для преобразования JSON обратно в объект
+    //JSON.stringify для преобразования объектов в JSON    
+    componentDidMount() {    
+    const contacts = localStorage.getItem('contacts');    
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+    this.setState({ contacts: parsedContacts });
+    }
+}
+//метод обновления компонента(вызывается каждый раз при обновлении объекта props или state)
+componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+}
+    
 //эта функция предотвращает запись в список одинаковых имен контактов
 onAddContact = ({ name, number }) => {
     const normalizedName = name.toLowerCase();
