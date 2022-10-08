@@ -63,6 +63,7 @@ render() {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             //на 65 строке ссылка на стейт
             value={this.state.number}
+            //при изменении в поле инпута идет вызов функции по обновлению значения в стейте
             onChange={this.handleChange}
             required />
         </Label>
